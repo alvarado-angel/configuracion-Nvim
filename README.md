@@ -1,17 +1,12 @@
+# Generales
 
-# ejecución de archivos
+Actualmente está configurado para funcionar con ts y js
 
-# instalación
+## ejecución de archivos js y ts
 
+para ejecutar un archivo .js o .ts desde nvim, debemos ingresar en la barra de comandos:
 ```sh
-nano ~/.config/nvim/init.lua
-```
-
-# ejecución
-
-para ejecutar un archivo .js o .ts
-```sh
-!node %
+:!node %
 ```
 
 # funcionalidad
