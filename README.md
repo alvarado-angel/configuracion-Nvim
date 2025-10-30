@@ -1,12 +1,81 @@
 # Generales
 
-Actualmente está configurado para funcionar con ts y js
+## Instalaciones necesarias
 
-## ejecución de archivos js y ts
+### Para ts o js
 
-para ejecutar un archivo .js o .ts desde nvim, debemos ingresar en la barra de comandos:
+Debemos tener instalado npm y nodejs, para ello siga las instrucciones de la página oficial
+de nodejs: https://nodejs.org/en  
+
+Luego hay que instalar ripgrep para realizar busquedas dentro del archivo con Telescope.  
 ```sh
-:!node %
+sudo apt install rigprep
+```
+
+De momento la configuración toma la versión global de ts-node cosas como ts-node
+```sh
+npm install -g ts-node
+```
+
+### Para python
+
+Debemos realizar la siguiente instalación
+
+```sh
+sudo apt update
+sudo apt install -y python3 python3-pip python3-venv
+```
+
+## instalaciones desde Mason
+
+debemos buscar e instalar con:
+```sh
+nvim
+```
+
+luego en modo normal escribimos:
+```sh
+:Mason
+```
+
+buscarémos cada uno de los nombres de la lista y para instalarlos debemos
+estar posicionados sobre el nombre y seleccionar i.  
+```sh
+// para python
+black   // formatter
+isort   // formatter
+pyright // LSP
+ruff    // linter
+// para ts y js
+eslint_d    // linter
+typescript-language-server  // LSP
+prettier    // formater
+// lua
+lua-language-server // LSP
+```
+
+## Si haremos un proyecto con JS o TS
+
+Para evitar conflictos con eslint_d se tiene que tener una configuracion eslint creada previamente.  
+
+Si inicializamos un proyecto con node:  
+```sh
+npm install -y
+```
+
+**Solamente si utilizaremos ts** debemos agregar jiti
+```sh
+npm install jiti
+```
+
+luego agregaremos eslint
+```sh
+npm install eslint
+```
+
+y luego vamos a configurar eslint acorde a nuestro proyecto, para comenzar la configuración:
+```sh
+npx eslint --init
 ```
 
 # funcionalidad
