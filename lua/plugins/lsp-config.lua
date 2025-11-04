@@ -1,26 +1,27 @@
 return {
 	{
 		"williamboman/mason.nvim",
+		lazy = false,
 		config = function()
 			require("mason").setup()
 		end,
 	},
 	{
 		"williamboman/mason-lspconfig.nvim",
-		config = function()
-			require("mason-lspconfig").setup({
-				ensure_installed = { "lua_ls", "ts_ls", "omnisharp" },
-				automatic_installation = true,
-			})
-		end,
+		lazy = false,
+		opts = {
+			automatic_installation = true,
+			ensure_installed = { "lua_ls", "ts_ls", "omnisharp", "pyright" },
+		},
 	},
 	{
 		"neovim/nvim-lspconfig",
+		lazy = false,
 		config = function()
 			-- Capabilities para nvim-cmp
-			local capabilities = vim.lsp.protocol.make_client_capabilities()
+			local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
-			-- Función que se ejecuta al adjuntar un servidor
+			-- función de keymaps
 			local on_attach = function(_, bufnr)
 				local opts = { noremap = true, silent = true, buffer = bufnr }
 				vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
@@ -30,34 +31,28 @@ return {
 				vim.keymap.set("n", "gr", vim.lsp.buf.references, opts)
 			end
 
-			local lsp = vim.lsp
-			local config = lsp.config
+			local lspconfig = vim.lsp.config
 
 			-- Configuraciones (vacías, Mason autocompleta)
-			config.lua_ls = {
+			lspconfig.lua_ls = {
 				capabilities = capabilities,
 				on_attach = on_attach,
 			}
 
-			config.pyright = {
+			lspconfig.pyright = {
 				capabilities = capabilities,
 				on_attach = on_attach,
 			}
 
-			config.ts_ls = {
+			lspconfig.ts_ls = {
 				capabilities = capabilities,
 				on_attach = on_attach,
 			}
 
-         config.omnisharp = {
-            capabilities = capabilities,
-            on_attach = on_attach,
-         }
-
-			-- Iniciar los servidores registrados
-			for _, server in ipairs({ "lua_ls", "ts_ls", "omnisharp" }) do
-				lsp.start(config[server])
-			end
+			lspconfig.omnisharp = {
+				capabilities = capabilities,
+				on_attach = on_attach,
+			}
 		end,
 	},
 }

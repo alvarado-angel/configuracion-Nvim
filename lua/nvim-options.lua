@@ -10,9 +10,9 @@ vim.opt.number = true
 vim.opt.relativenumber = true
 
 -- Indentación
-vim.opt.tabstop = 3
-vim.opt.softtabstop = 3
-vim.opt.shiftwidth = 3
+vim.opt.tabstop = 4
+vim.opt.softtabstop = 4
+vim.opt.shiftwidth = 4
 vim.opt.expandtab = true
 vim.opt.smartindent = true
 
@@ -26,7 +26,7 @@ vim.opt.smartcase = true
 vim.opt.termguicolors = true
 vim.opt.scrolloff = 7
 vim.opt.signcolumn = "yes"
-vim.opt.colorcolumn = "89"
+vim.opt.colorcolumn = "90"
 vim.opt.cursorline = true
 
 -- Fuente (si usas un GUI de Neovim como Neovide o terminal que soporte)
@@ -45,22 +45,22 @@ vim.opt.updatetime = 50
 -- ============================================================================
 
 vim.diagnostic.config({
-   virtual_text = {
-      spacing = 4,
-      prefix = function(diagnostic)
-         local icons = {
-            [vim.diagnostic.severity.ERROR] = " ",
-            [vim.diagnostic.severity.WARN]  = " ",
-            [vim.diagnostic.severity.INFO]  = " ",
-            [vim.diagnostic.severity.HINT]  = "󰌵 ",
-         }
-         return icons[diagnostic.severity] or "●"
-      end,
-   },
-   signs = true,
-   underline = true,
-   update_in_insert = false,
-   severity_sort = true,
+	virtual_text = {
+		spacing = 4,
+		prefix = function(diagnostic)
+			local icons = {
+				[vim.diagnostic.severity.ERROR] = " ",
+				[vim.diagnostic.severity.WARN] = " ",
+				[vim.diagnostic.severity.INFO] = " ",
+				[vim.diagnostic.severity.HINT] = "󰌵 ",
+			}
+			return icons[diagnostic.severity] or "●"
+		end,
+	},
+	signs = true,
+	underline = true,
+	update_in_insert = false,
+	severity_sort = true,
 })
 
 -- ============================================================================
@@ -68,28 +68,28 @@ vim.diagnostic.config({
 -- ============================================================================
 
 vim.keymap.set("n", "<leader><leader>", function()
-   local filetype = vim.bo.filetype
-   local cmd = ""
+	local filetype = vim.bo.filetype
+	local cmd = ""
 
-   if filetype == "python" then
-      cmd = "python3 %"
-   elseif filetype == "javascript" then
-      cmd = "node %"
-   elseif filetype == "typescript" then
-      cmd = "npx ts-node %"
-   end
+	if filetype == "python" then
+		cmd = "python3 %"
+	elseif filetype == "javascript" then
+		cmd = "node %"
+	elseif filetype == "typescript" then
+		cmd = "npx ts-node %"
+	end
 
-   vim.cmd("split | terminal " .. cmd)
-   vim.cmd("resize 15") -- Altura de 15 líneas
+	vim.cmd("split | terminal " .. cmd)
+	vim.cmd("resize 15") -- Altura de 15 líneas
 end, { desc = "Run in floating terminal" })
 
 -- formatear con conform.vim (en vez de LSP)
 vim.keymap.set("n", "<leader>fm", function()
-   require("conform").format({
-      lsp_fallback = true,
-      async = false,
-      timeout_ms = 1000,
-   })
+	require("conform").format({
+		lsp_fallback = true,
+		async = false,
+		timeout_ms = 1000,
+	})
 end, { desc = "Format the file and fall back to the LSP if no formatter is available." })
 
 -- Navegación entre ventanas
