@@ -11,7 +11,7 @@ return {
 		lazy = false,
 		opts = {
 			automatic_installation = true,
-			ensure_installed = { "lua_ls", "ts_ls", "omnisharp", "pyright" },
+			ensure_installed = { "lua_ls", "ts_ls", "pyright" },
 		},
 	},
 	{
@@ -49,10 +49,6 @@ return {
 				on_attach = on_attach,
 			}
 
-			lspconfig.omnisharp = {
-				capabilities = capabilities,
-				on_attach = on_attach,
-			}
 		end,
 	},
 }

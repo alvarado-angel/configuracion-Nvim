@@ -67,22 +67,6 @@ vim.diagnostic.config({
 -- KEYMAPS DEL SISTEMA
 -- ============================================================================
 
-vim.keymap.set("n", "<leader><leader>", function()
-	local filetype = vim.bo.filetype
-	local cmd = ""
-
-	if filetype == "python" then
-		cmd = "python3 %"
-	elseif filetype == "javascript" then
-		cmd = "node %"
-	elseif filetype == "typescript" then
-		cmd = "npx ts-node %"
-	end
-
-	vim.cmd("split | terminal " .. cmd)
-	vim.cmd("resize 15") -- Altura de 15 líneas
-end, { desc = "Run in floating terminal" })
-
 -- formatear con conform.vim (en vez de LSP)
 vim.keymap.set("n", "<leader>fm", function()
 	require("conform").format({
