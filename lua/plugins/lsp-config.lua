@@ -11,7 +11,7 @@ return {
 		lazy = false,
 		opts = {
 			automatic_installation = true,
-			ensure_installed = { "lua_ls", "ts_ls", "pyright" },
+			ensure_installed = { "lua_ls", "ts_ls", "pyright", "gopls" },
 		},
 	},
 	{
@@ -49,6 +49,10 @@ return {
 				on_attach = on_attach,
 			}
 
+            lspconfig.gopls = {
+                capabilities = capabilities,
+                on_attach = on_attach,
+            }
 		end,
 	},
 }

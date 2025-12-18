@@ -2,9 +2,6 @@
 -- CONFIGURACIÓN BASICAS
 -- ============================================================================
 
-vim.g.mapleader = " "
-vim.g.maplocalleader = " "
-
 -- Números de línea
 vim.opt.number = true
 vim.opt.relativenumber = true

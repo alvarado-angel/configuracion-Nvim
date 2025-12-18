@@ -1,9 +1,28 @@
 -- ============================================================================
--- AGREGANDO MASON AL PATH PARA QUE ENCUENTRE LOS PATH
+-- INIT.LUA CROSS-PLATFORM
+-- ============================================================================
+
+-- Detectar sistema operativo
+local is_windows = vim.loop.os_uname().sysname == "Windows_NT"
+
+-- ============================================================================
+-- AGREGANDO MASON AL PATH
 -- ============================================================================
 
 local mason_bin = vim.fn.stdpath("data") .. "/mason/bin"
-vim.env.PATH = mason_bin .. ":" .. vim.env.PATH
+if is_windows then
+    vim.env.PATH = mason_bin .. ";" .. vim.env.PATH
+else
+    vim.env.PATH = mason_bin .. ":" .. vim.env.PATH
+end
+
+
+-- ============================================================================
+-- AGREGANDO mapleaders y localmapleader
+-- ===========================================================================
+
+vim.g.mapleader = " "
+vim.g.maplocalleader = " "
 
 -- ============================================================================
 -- INSTALACIÓN DE LAZY.NVIM (Gestor de plugins)
@@ -26,10 +45,10 @@ vim.opt.rtp:prepend(lazypath)
 -- PLUGINS
 -- ============================================================================
 
-require("lazy").setup("plugins")
+require("lazy").setup("plugins") 
 
 -- ============================================================================
 -- CONFIGURACIONES BÁSICAS Y ATAJOS DE TECLADO
 -- ============================================================================
 
-require("nvim-options")
+require("nvim-options") 
