@@ -11,10 +11,32 @@ vim.keymap.set("n", "<leader>q", ":q<CR>", { desc = "Quit" })
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 
--- -- ============================================================================
--- -- KEYMAPS DEL SISTEMA
--- -- ============================================================================
+vim.keymap.set("n", "<leader>fm", function()
+	require("conform").format()
+end, { desc = "Format document" })
+
+-- git keymaps
 --
+vim.keymap.set("n", "]h", function()
+	require("gitsigns").next_hunk()
+end, { desc = "Next Git Hunk" })
+
+vim.keymap.set("n", "[h", function()
+	require("gitsigns").prev_hunk()
+end, { desc = "Prev Git Hunk" })
+
+-- vim.keymap.set("n", "<leader>hs", function()
+-- 	require("gitsigns").stage_hunk()
+-- end, { desc = "Stage Hunk" })
+--
+-- vim.keymap.set("n", "<leader>hr", function()
+-- 	require("gitsigns").reset_hunk()
+-- end, { desc = "Reset Hunk" })
+--
+-- vim.keymap.set("n", "<leader>hp", function()
+-- 	require("gitsigns").preview_hunk()
+-- end, { desc = "Preview Hunk" })
+
 -- -- formatear con conform.vim (en vez de LSP)
 -- vim.keymap.set("n", "<leader>fm", function()
 -- 	require("conform").format({
